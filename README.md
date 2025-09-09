@@ -1,115 +1,114 @@
-# 🤖 UTBot: Your AI Chat Companion
+# Project Title
 
-A versatile AI chatbot application built with Python and Streamlit, featuring multiple personality types and an intuitive web interface.
+A brief and engaging description of your project, explaining what it does and who it's for.
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![Code Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
 
 ## ✨ Features
 
-- **Multiple Bot Personalities**:
-  - **Friendly Bot** (Joy): A super friendly and casual AI companion
-  - **Teacher Bot**: An expert educator that can teach any subject you specify
-  - **Grumpy Bot**: A sarcastic bot with dry humor but still helpful
+A summary of the key features of your project.
 
-- **Interactive Web Interface**: Built with Streamlit for an easy-to-use chat experience
-- **Memory System**: Remembers the last 3 messages for contextual conversations
-- **Customizable Teacher Bot**: Choose the subject and name for personalized learning
-- **Real-time Chat**: Seamless conversation flow with thinking indicators
+| Feature                | Status      | Description                                     |
+| ---------------------- | ----------- | ----------------------------------------------- |
+| **Core Functionality** | ✅ Complete | The main feature of the project is fully functional. |
+| **User Interface**     | 🚧 In-Progress | The UI is currently under development.          |
+| **API Integration**    | ❌ Planned  | Integration with external APIs is planned.      |
+
+## 🛠️ Technologies Used
+
+A list of technologies, frameworks, and libraries used in the project.
+
+-   **Frontend:** [e.g., React, Vue, Angular]
+-   **Backend:** [e.g., Node.js, Python, Django]
+-   **Database:** [e.g., PostgreSQL, MongoDB]
+-   **Testing:** [e.g., Jest, Pytest]
 
 ## 🚀 Getting Started
 
+Instructions on how to get a local copy of the project up and running.
+
 ### Prerequisites
 
-- Python 3.7 or higher
-- API key for Groq (using Llama-3.3-70b-versatile model)
+List any software or tools that need to be installed before setting up the project.
+
+-   [e.g., Node.js >= 14.x]
+-   [e.g., Python >= 3.8]
 
 ### Installation
 
-1. Clone or download this repository
-2. Install the required dependencies:
-   ```bash
-   pip install streamlit openai
-   ```
+A step-by-step guide on how to install the project.
 
-3. Update your API key in `utils.py`:
-   ```python
-   API_KEY = "your_groq_api_key_here"
-   ```
+1.  **Clone the repository:**
+    ```sh
+    git clone https://github.com/your-username/your-project.git
+    ```
+2.  **Navigate to the project directory:**
+    ```sh
+    cd your-project
+    ```
+3.  **Install dependencies:**
+    ```sh
+    # For Node.js projects
+    npm install
 
-### Running the Application
+    # For Python projects
+    pip install -r requirements.txt
+    ```
 
-#### Web Interface (Recommended)
-```bash
-streamlit run app.py
+## Usage
+
+Provide examples of how to use your project. Include code blocks and screenshots if applicable.
+
+### Example 1: Basic Usage
+
+```python
+# Import the necessary module
+from src.main import awesome_function
+
+# Call the function
+result = awesome_function()
+print(result)
 ```
 
-#### Command Line Interface
-```bash
-python chatbot_logic.py
+### Example 2: Advanced Usage
+
+```javascript
+// A more complex example demonstrating advanced features.
+const { anotherGreatFunction } = require('./src/utils');
+
+anotherGreatFunction({
+  param1: 'value1',
+  param2: 'value2',
+});
 ```
 
-## 📁 Project Structure
+## 🏗️ Project Architecture
 
+A diagram showing the high-level architecture or workflow of the project.
+
+```mermaid
+graph TD;
+    A[User] -->|Interacts with| B(Frontend);
+    B -->|Sends API request| C(Backend);
+    C -->|Processes request| C;
+    C -->|Fetches/stores data| D(Database);
+    D -->|Returns data| C;
+    C -->|Sends response| B;
+    B -->|Displays result| A;
 ```
-chatbot/
-├── app.py              # Streamlit web interface
-├── chatbot_logic.py    # Core chatbot logic and personalities
-├── utils.py           # Utility functions and LLM integration
-└── README.md          # Project documentation
-```
-
-## 🔧 How It Works
-
-### Architecture
-
-1. **Memory System**: The `Memory` class stores the last 3 messages to maintain conversation context
-2. **Base Chatbot Class**: Provides common functionality for all bot types
-3. **Specialized Bots**: Each personality inherits from the base class with unique prompt engineering
-4. **LLM Integration**: Uses Groq's API with the Llama-3.3-70b-versatile model
-
-### Bot Personalities
-
-- **FriendlyBot**: Uses casual, enthusiastic language with a friendly tone
-- **TeacherBot**: Acts as an expert educator in a specified subject with a given name
-- **GrumpyBot**: Responds with sarcasm and dry humor while still being helpful
-
-## 🎯 Usage Examples
-
-### Web Interface
-1. Open the application in your browser
-2. Choose a bot personality from the sidebar
-3. For Teacher Bot, specify a subject and name
-4. Click "Start Chat" to begin the conversation
-5. Use "Reset Conversation" to start over with a different bot
-
-### Command Line
-```bash
-$ python chatbot_logic.py
-Choose your chatbot:
-1. Friendly Bot
-2. Teacher Bot  
-3. Grumpy Bot
-Enter 1, 2, or 3: 2
-What subject should I teach? Quantum Physics
-```
-
-## 🔐 Security Notes
-
-- Keep your API key secure and never commit it to version control
-- Consider using environment variables for production deployments
-- The current implementation includes the API key directly in the code for educational purposes
-
-## 👨‍💻 Author
-
-**Rafael Ignacio Gonzalez Chong** (rig493)  
-GSI PYTHON - Python Chatbot Final Project
-
-## 📄 License
-
-This project is for educational purposes as part of a Python programming course.
 
 ## 🤝 Contributing
 
-This is a student project, but suggestions and improvements are welcome for educational purposes.
+We welcome contributions from the community! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to get started.
 
----
+## 📝 License
 
-*Built with ❤️ using Python, Streamlit, and Groq AI*
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact
+
+-   **Your Name:** [Your Name]
+-   **Email:** [your-email@example.com]
+-   **Project Link:** [https://github.com/your-username/your-project](https://github.com/your-username/your-project)

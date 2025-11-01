@@ -1,29 +1,35 @@
 # utils.py
-# GSI PYTHON : Python Chatbot Final Project
-# Rafael Ignacio Gonzalez Chong (rig493)
-# This file contains utility functions, such as querying the LLM.
+# This file handles the LLM connection and related helper functions.
 
 from openai import OpenAI
 import os
 
-# IMPORTANT: ONLY UPDATE YOUR API KEY BELOW
+# ---------------------------------------------------------------
+# API CONFIGURATION
+# ---------------------------------------------------------------
+# Set up the client to connect to Groq’s OpenAI-compatible endpoint.
+# To use your own key, replace the value below with your API key.
 
-#API_KEY = "gong_api_key" uncomment this line and replace with your API key
-#CLIENT = OpenAI(api_key=API_KEY, base_url="https://api.groq.com/openai/v1") uncomment this line to use the Groq API
+API_KEY = "Your api goes here"
+CLIENT = OpenAI(api_key=API_KEY, base_url="url base from Groq")
+
+# ---------------------------------------------------------------
+# QUERY FUNCTION
+# ---------------------------------------------------------------
 def query_llm(message: str) -> str:
     """
-    Provided function to query the LLM.
+    Sends a message to the LLM and returns its response.
+
     Args:
-        message: The prompt to send to the LLM
+        message (str): The input prompt to send.
     Returns:
-        The LLM's response as a string
+        str: The models text response.
     """
     response = CLIENT.chat.completions.create(
-    model="llama-3.3-70b-versatile",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": message}
-    ]
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": message}
+        ]
     )
     return response.choices[0].message.content
-    

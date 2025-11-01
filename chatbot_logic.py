@@ -1,77 +1,69 @@
 # chatbot_logic.py
-# GSI PYTHON : Python Chatbot Final Project
-# Rafael Ignacio Gonzalez Chong (rig493)
-# This file contains the chatbot logic, including different bot personalities and their behaviors.
+# This file handles chatbot logic, memory management, and bot personalities.
 
 from typing import List, Dict
 from utils import query_llm
 
-################################################################
+# -------------------------------------------------------------------
 
 class Memory:
-    """store last 3 messages"""
+    # Stores the last 3 messages between user and bot
 
     def __init__(self):
-        # Store last 3 messages
-        self.messages = []
+        self.messages = []  # list to keep conversation history
 
     def add_message(self, role: str, content: str) -> None:
-        # Add a new message as a dictionary
+        # adds a new message and keeps only the last 3
         self.messages.append({'role': role, 'content': content})
-        # Keep only last 3 messages
         self.messages = self.messages[-3:]
 
     def get_recent_messages(self) -> str:
-        # Build a string from the last 3 messages
+        # builds a short history string from recent messages
         output = ""
         for m in self.messages:
             output += f"{m['role'].capitalize()}: {m['content']}\n"
         return output.strip()
-   
-################################################################
+
+# -------------------------------------------------------------------
 
 class Chatbot:
-    """base chatbot"""
+    # base chatbot class used by all bot types
 
     def __init__(self, name: str):
         self.name = name
         self.memory = Memory()
 
     def _create_prompt(self, user_input: str) -> str:
-        # combine memory and user input into a prompt
+        # combines memory and user input into a prompt for the model
         history = self.memory.get_recent_messages()
         prompt = f"{history}\nUser: {user_input}\n{self.name}:"
         return prompt
 
     def generate_response(self, user_input: str) -> str:
-        # store input
+        # saves user input, builds prompt, and queries the LLM
         self.memory.add_message("user", user_input)
-        # create prompt
         prompt = self._create_prompt(user_input)
-        # query the LLM
         response = query_llm(prompt)
-        # store response
         self.memory.add_message("bot", response)
         return response
 
-################################################################
+# -------------------------------------------------------------------
 
 class FriendlyBot(Chatbot):
-    """friendly bot"""
+    # cheerful and casual personality
 
     def _create_prompt(self, user_input: str) -> str:
-
         history = self.memory.get_recent_messages()
         prompt = (
-            "You are Chavoso AI, a super friendly and casual AI chatbot!"
+            "You are Chavoso AI, a super friendly and casual chatbot!"
             f"{history}\nUser: {user_input}\nJoy:"
         )
         return prompt
-    
-################################################################
+
+# -------------------------------------------------------------------
 
 class TeacherBot(Chatbot):
-    """teacher bot"""
+    # teacher personality, specialized in a given subject
 
     def __init__(self, name: str, subject: str):
         super().__init__(name)
@@ -84,14 +76,13 @@ class TeacherBot(Chatbot):
             f"{history}\nStudent: {user_input}\n{self.name}:"
         )
         return prompt
-    
-################################################################
+
+# -------------------------------------------------------------------
 
 class GrumpyBot(Chatbot):
-    """the grumpy bot"""
+    # sarcastic bot, always a bit annoyed but still helpful
 
     def _create_prompt(self, user_input: str) -> str:
-        # Personality: blunt, a little rude, with dry humor—but still gives answers!
         history = self.memory.get_recent_messages()
         prompt = (
             "You are Grumpy, a chatbot who is always a bit annoyed and sarcastic. "
@@ -99,11 +90,10 @@ class GrumpyBot(Chatbot):
         )
         return prompt
 
-################################################################
+# -------------------------------------------------------------------
 
 def main():
-    """Main interaction loop"""
-    # Let user choose personality
+    # allows testing the bot directly from the terminal
     print("Choose your chatbot:")
     print("1. Friendly Bot")
     print("2. Teacher Bot")
@@ -117,16 +107,18 @@ def main():
         bot = TeacherBot("Mr. Incredible", subject)
     else:
         bot = GrumpyBot("Grumpy")
-    
-    print(f"\n{bot.name}: Hello! How can I help you today? ")
-    
+
+    print(f"\n{bot.name}: Hello! How can I help you today?")
+
     while True:
         user_input = input("You: ").strip()
         if user_input.lower() == "quit":
             break
-        
+
         response = bot.generate_response(user_input)
         print(f"{bot.name}: {response}")
+
+# -------------------------------------------------------------------
 
 if __name__ == "__main__":
     main()
